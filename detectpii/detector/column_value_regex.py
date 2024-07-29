@@ -35,29 +35,29 @@ class ColumnValueRegexDetector(Detector):
         if not len(sample):
             return
 
-        column_values = sample[column.name].astype(str).str.cat(sep=" ")
-        regex = CommonRegex(column_values)
+        for column_value in sample[column.name].astype(str):
+            regex = CommonRegex(column_value)
 
-        if regex.phones or regex.phones_with_exts:  # noqa
-            return Phone()
+            if regex.phones or regex.phones_with_exts:  # noqa
+                return Phone()
 
-        if regex.emails:  # noqa
-            return Email()
+            if regex.emails:  # noqa
+                return Email()
 
-        if regex.ips or regex.ipv6s:  # noqa
-            return IPAddress()
+            if regex.ips or regex.ipv6s:  # noqa
+                return IPAddress()
 
-        if regex.credit_cards:  # noqa
-            return CreditCard()
+            if regex.credit_cards:  # noqa
+                return CreditCard()
 
-        if regex.street_addresses:  # noqa
-            return Address()
+            if regex.street_addresses:  # noqa
+                return Address()
 
-        if regex.zip_codes:  # noqa
-            return ZipCode()
+            if regex.zip_codes:  # noqa
+                return ZipCode()
 
-        if regex.po_boxes:  # noqa
-            return PoBox()
+            if regex.po_boxes:  # noqa
+                return PoBox()
 
-        if regex.ssn_number:  # noqa
-            return SSN()
+            if regex.ssn_number:  # noqa
+                return SSN()

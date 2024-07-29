@@ -26,7 +26,8 @@ class DataScanner(Scanner):
 
                 for column in table.columns:
                     pii_type = column_value_regex_detector.detect(
-                        column=column, sample=sample
+                        column=column,
+                        sample=sample,
                     )
 
                     if pii_type:
