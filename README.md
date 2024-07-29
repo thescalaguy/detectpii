@@ -5,13 +5,13 @@ on column names and column values, flagging the ones that may contain PII.
 
 ## Usage
 
-### Check the schema for PII columns
+### Check the table schema and values for PII columns
 ```python
 from detectpii.catalog import PostgresCatalog
-from detectpii.scanner import MetadataScanner
+from detectpii.pipeline import PiiDetectionPipeline
+from detectpii.scanner import DataScanner, MetadataScanner
 
-# -- Connect to your database
-catalog = PostgresCatalog(
+pg_catalog = PostgresCatalog(
     host="localhost",
     user="postgres",
     password="my-secret-pw",
@@ -20,36 +20,15 @@ catalog = PostgresCatalog(
     schema="public"
 )
 
-# -- Find the tables
-catalog.detect_tables()
-
-# -- Scan the tables for potentially PII columns
-scanner = MetadataScanner()
-pii_columns = scanner.scan(catalog=catalog)
-```  
-
-### Check the data for PII columns
-
-```python
-from detectpii.catalog import PostgresCatalog
-from detectpii.scanner import DataScanner
-
-# -- Connect to your database
-catalog = PostgresCatalog(
-    host="localhost",
-    user="postgres",
-    password="my-secret-pw",
-    database="postgres",
-    port=5432,
-    schema="public"
+pipeline = PiiDetectionPipeline(
+    catalog=pg_catalog,
+    scanners=[
+        MetadataScanner(),
+        DataScanner(),
+    ]
 )
 
-# -- Find the tables
-catalog.detect_tables()
-
-# -- Scan the tables for potentially PII columns
-scanner = DataScanner()
-pii_columns = scanner.scan(catalog=catalog)
+pii_columns = pipeline.scan()
 ```
 
 ## Supported databases / warehouses  

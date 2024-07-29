@@ -2,29 +2,26 @@ import pandas as pd
 from attr import define
 
 from detectpii.detector import ColumnValueRegexDetector
-from detectpii.model import Catalog, PiiColumn
+from detectpii.model import Catalog, PiiColumn, Scanner
 
 
 @define(kw_only=True)
-class DataScanner:
+class DataScanner(Scanner):
     """Scan the table values for PII columns."""
 
-    def scan(
-        self,
-        catalog: Catalog,
-        percentage: int = 10,
-        times: int = 1,
-        **kwargs,
-    ) -> list[PiiColumn]:
+    times: int = 1
+    percentage: int = 10
+
+    def scan(self, catalog: Catalog, **kwargs) -> list[PiiColumn]:
         pii_columns = []
 
         column_value_regex_detector = ColumnValueRegexDetector()
 
-        for _ in range(times):
+        for _ in range(self.times):
             for table in catalog.tables:
                 sample: pd.DataFrame = catalog.sample(
                     table=table,
-                    percentage=percentage,
+                    percentage=self.percentage,
                 )
 
                 for column in table.columns:

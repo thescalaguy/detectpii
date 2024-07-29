@@ -43,6 +43,15 @@ class Catalog:
 
 
 @define(kw_only=True)
+class Scanner:
+    """A PII scanner."""
+
+    @abc.abstractmethod
+    def scan(self, catalog: Catalog, **kwargs):
+        raise NotImplementedError()
+
+
+@define(kw_only=True, frozen=True)
 class PiiColumn:
     """A column that may potentially store PII data."""
 
