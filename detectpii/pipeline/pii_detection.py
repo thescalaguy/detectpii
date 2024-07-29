@@ -1,12 +1,14 @@
 from attr import define, Factory
 
-from detectpii.model import Catalog, Scanner, PiiColumn
+from detectpii.catalog import CatalogT
+from detectpii.model import PiiColumn
+from detectpii.scanner import ScannerT
 
 
 @define(kw_only=True)
 class PiiDetectionPipeline:
-    catalog: Catalog
-    scanners: list[Scanner] = Factory(list)
+    catalog: CatalogT
+    scanners: list[ScannerT] = Factory(list)
 
     def scan(self) -> list[PiiColumn]:
         self.catalog.detect_tables()
