@@ -11,6 +11,7 @@ from detectpii.catalog import PostgresCatalog
 from detectpii.pipeline import PiiDetectionPipeline
 from detectpii.scanner import DataScanner, MetadataScanner
 
+# -- Create a catalog to connect to a database / warehouse
 pg_catalog = PostgresCatalog(
     host="localhost",
     user="postgres",
@@ -20,6 +21,7 @@ pg_catalog = PostgresCatalog(
     schema="public"
 )
 
+# -- Create a pipeline to detect PII in the tables
 pipeline = PiiDetectionPipeline(
     catalog=pg_catalog,
     scanners=[
@@ -28,7 +30,46 @@ pipeline = PiiDetectionPipeline(
     ]
 )
 
+# -- Scan for PII columns.
 pii_columns = pipeline.scan()
+```
+
+### Persist the pipeline
+
+```python
+import json
+from detectpii.pipeline import pipeline_to_json
+
+# -- Create a pipeline
+pipeline = ...
+
+# -- Convert it into a dictionary
+dictionary = pipeline_to_json(pipeline)
+
+# -- Print it
+print(json.dumps(dictionary, indent=4))
+
+# {
+#     "catalog": {
+#         "tables": [],
+#         "user": "postgres",
+#         "password": "my-secret-pw",
+#         "host": "localhost",
+#         "port": 5432,
+#         "database": "postgres",
+#         "schema": "public"
+#     },
+#     "scanners": [
+#         {
+#             "_type": "MetadataScanner"
+#         },
+#         {
+#             "times": 2,
+#             "percentage": 20,
+#             "_type": "DataScanner"
+#         }
+#     ]
+# }
 ```
 
 ## Supported databases / warehouses  
