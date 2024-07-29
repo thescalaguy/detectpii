@@ -8,7 +8,11 @@ from detectpii.model import PiiColumn, Scanner, Catalog
 class MetadataScanner(Scanner):
     """Scan the table schema for PII columns."""
 
-    def scan(self, catalog: Catalog, **kwargs,) -> list[PiiColumn]:
+    def scan(
+        self,
+        catalog: Catalog,
+        **kwargs,
+    ) -> list[PiiColumn]:
         pii_columns = []
 
         column_name_regex_detector = ColumnNameRegexDetector()

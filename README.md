@@ -24,7 +24,7 @@ pipeline = PiiDetectionPipeline(
     catalog=pg_catalog,
     scanners=[
         MetadataScanner(),
-        DataScanner(),
+        DataScanner(percentage=20, times=2,),
     ]
 )
 
