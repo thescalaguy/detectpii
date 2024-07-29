@@ -1,8 +1,6 @@
 import itertools
 from functools import cached_property
-from typing import Sequence, Iterator
 
-import pandas as pd
 from attr import define
 from sqlalchemy import Engine, create_engine, text, URL, MappingResult
 

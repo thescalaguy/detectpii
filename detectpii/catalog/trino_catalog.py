@@ -1,7 +1,6 @@
 from functools import cached_property
 from typing import Sequence
 
-import pandas as pd
 from attr import define
 from sqlalchemy import Engine, create_engine, text, Connection, Row, MappingResult
 from trino.sqlalchemy import URL
