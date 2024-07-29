@@ -27,7 +27,12 @@ from detectpii.pii_type import (
 class Detector:
 
     @abc.abstractmethod
-    def detect(self, column: Column) -> Optional[PiiType]:
+    def detect(
+        self,
+        column: Column,
+        *args,
+        **kwargs,
+    ) -> Optional[PiiType]:
         raise NotImplementedError()
 
 
@@ -83,7 +88,12 @@ class ColumnNameRegexDetector(Detector):
 
     name: str = "ColumnNameRegexDetector"
 
-    def detect(self, column: Column) -> Optional[PiiType]:
+    def detect(
+        self,
+        column: Column,
+        *args,
+        **kwargs,
+    ) -> Optional[PiiType]:
         for pii_type, ex in self.regex.items():
             if ex.match(column.name) is not None:
                 return pii_type()

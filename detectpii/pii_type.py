@@ -83,5 +83,11 @@ class UserName(PiiType):
 
 @define(kw_only=True)
 class Password(PiiType):
-    name: str = "word"
-    type: str = "word"
+    name: str = "Password"
+    type: str = "password"
+
+
+@define(kw_only=True)
+class IPAddress(PiiType):
+    name: str = "IP Address"
+    type: str = "ip_address"

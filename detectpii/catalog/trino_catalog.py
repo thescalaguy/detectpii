@@ -1,5 +1,7 @@
+from functools import cached_property
 from typing import Sequence
 
+import pandas as pd
 from attr import define
 from sqlalchemy import Engine, create_engine, text, Connection, Row
 from trino.sqlalchemy import URL
@@ -18,11 +20,12 @@ class TrinoCatalog(Catalog):
     catalog: str
     schema: str
 
+    @cached_property
     def engine(self) -> Engine:
-        return create_engine(self.url)
+        return create_engine(self.url, pool_timeout=10)
 
     def detect_tables(self) -> None:
-        trino_engine = self.engine()
+        trino_engine = self.engine
 
         with trino_engine.connect() as conn:
 
@@ -33,6 +36,21 @@ class TrinoCatalog(Catalog):
                     table_name=table_name,
                     conn=conn,
                 )
+
+    def sample(self, table: Table, percentage: int = 10, **kwargs) -> pd.DataFrame:
+        assert table in self.tables, "Provided table doees not belong to this catalog"
+
+        fully_qualified_table_name = f"{self.catalog}.{self.schema}.{table.name}"
+        sql = f"""
+            SELECT * 
+            FROM {fully_qualified_table_name} 
+            TABLESAMPLE BERNOULLI({percentage})
+        """
+
+        trino_engine = self.engine
+
+        with trino_engine.connect() as conn:
+            return pd.read_sql(sql=sql, con=conn)
 
     @property
     def url(self) -> URL:

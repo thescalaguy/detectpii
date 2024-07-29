@@ -1,5 +1,6 @@
 import abc
 
+import pandas as pd
 from attr import define, Factory
 from sqlalchemy import Engine
 
@@ -34,6 +35,10 @@ class Catalog:
 
     @abc.abstractmethod
     def detect_tables(self) -> None:
+        raise NotImplementedError()
+
+    @abc.abstractmethod
+    def sample(self, table: Table, *args, **kwargs) -> pd.DataFrame:
         raise NotImplementedError()
 
 

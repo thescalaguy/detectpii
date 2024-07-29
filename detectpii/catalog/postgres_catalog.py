@@ -1,5 +1,7 @@
 import itertools
+from functools import cached_property
 
+import pandas as pd
 from attr import define
 from sqlalchemy import Engine, create_engine, text, URL
 
@@ -17,6 +19,7 @@ class PostgresCatalog(Catalog):
     database: str
     schema: str
 
+    @cached_property
     def engine(self) -> Engine:
         return create_engine(self.url)
 
@@ -35,7 +38,7 @@ class PostgresCatalog(Catalog):
         """
         )
 
-        pg_engine = self.engine()
+        pg_engine = self.engine
 
         with pg_engine.connect() as conn:
             rows = conn.execute(
@@ -54,6 +57,29 @@ class PostgresCatalog(Catalog):
                 )
 
                 self.tables.append(table)
+
+    def sample(
+        self,
+        table: Table,
+        percentage: int = 10,
+        *args,
+        **kwargs,
+    ) -> pd.DataFrame:
+        sql = f"""
+            SELECT *
+            FROM {table.name}
+            TABLESAMPLE BERNOULLI(%(percentage)s)
+        """
+
+        with self.engine.connect() as conn:
+            return pd.read_sql(
+                sql=sql,
+                con=conn,
+                params={
+                    "table_name": table.name,
+                    "percentage": percentage,
+                },
+            )
 
     @property
     def url(self) -> URL:

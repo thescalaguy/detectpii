@@ -5,10 +5,10 @@ from detectpii.model import Catalog, PiiColumn
 
 
 @define(kw_only=True)
-class PiiScanner:
-    """Scan the catalog for PII columns."""
+class MetadataScanner:
+    """Scan the table schema for PII columns."""
 
-    def scan(self, catalog: Catalog) -> list[PiiColumn]:
+    def scan(self, catalog: Catalog, **kwargs) -> list[PiiColumn]:
         pii_columns = []
 
         column_name_regex_detector = ColumnNameRegexDetector()
@@ -19,7 +19,9 @@ class PiiScanner:
 
                 if pii_type:
                     pii_column = PiiColumn(
-                        table=table.name, column=column.name, pii_type=pii_type
+                        table=table.name,
+                        column=column.name,
+                        pii_type=pii_type,
                     )
 
                     pii_columns.append(pii_column)
