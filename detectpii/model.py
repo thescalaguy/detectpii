@@ -1,4 +1,5 @@
 import abc
+from typing import Sequence
 
 import pandas as pd
 from attr import define, Factory
@@ -38,7 +39,7 @@ class Catalog:
         raise NotImplementedError()
 
     @abc.abstractmethod
-    def sample(self, table: Table, *args, **kwargs) -> pd.DataFrame:
+    def sample(self, table: Table, *args, **kwargs) -> Sequence[dict]:
         raise NotImplementedError()
 
 

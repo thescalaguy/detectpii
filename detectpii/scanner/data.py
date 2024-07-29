@@ -2,7 +2,7 @@ import pandas as pd
 from attr import define
 
 from detectpii.detector import ColumnValueRegexDetector
-from detectpii.model import Catalog, PiiColumn, Scanner
+from detectpii.model import Catalog, PiiColumn, Scanner, Column
 
 
 @define(kw_only=True)
@@ -17,26 +17,34 @@ class DataScanner(Scanner):
 
         column_value_regex_detector = ColumnValueRegexDetector()
 
+        # -- Repeat the process as many times as requested
         for _ in range(self.times):
+
+            # -- One table at a time
             for table in catalog.tables:
-                sample: pd.DataFrame = catalog.sample(
+
+                # -- One row at a time
+                for row in catalog.sample(
                     table=table,
                     percentage=self.percentage,
-                )
+                ):
 
-                for column in table.columns:
-                    pii_type = column_value_regex_detector.detect(
-                        column=column,
-                        sample=sample,
-                    )
+                    # -- One column at a time
+                    for column_name, value in row.items():
+                        column = Column(name=column_name)
 
-                    if pii_type:
-                        pii_column = PiiColumn(
-                            table=table.name,
-                            column=column.name,
-                            pii_type=pii_type,
+                        pii_type = column_value_regex_detector.detect(
+                            column=column,
+                            sample=str(value),
                         )
 
-                        pii_columns.append(pii_column)
+                        if pii_type:
+                            pii_column = PiiColumn(
+                                table=table.name,
+                                column=column.name,
+                                pii_type=pii_type,
+                            )
+
+                            pii_columns.append(pii_column)
 
         return pii_columns

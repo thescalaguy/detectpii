@@ -1,9 +1,10 @@
 import itertools
 from functools import cached_property
+from typing import Sequence, Iterator
 
 import pandas as pd
 from attr import define
-from sqlalchemy import Engine, create_engine, text, URL
+from sqlalchemy import Engine, create_engine, text, URL, MappingResult
 
 from detectpii.model import Catalog, Column, Table
 
@@ -64,22 +65,22 @@ class PostgresCatalog(Catalog):
         percentage: int = 10,
         *args,
         **kwargs,
-    ) -> pd.DataFrame:
-        sql = f"""
+    ) -> MappingResult:
+        sql = text(
+            f"""
             SELECT *
             FROM {table.name}
-            TABLESAMPLE BERNOULLI(%(percentage)s)
+            TABLESAMPLE BERNOULLI(:percentage)
         """
+        )
 
         with self.engine.connect() as conn:
-            return pd.read_sql(
-                sql=sql,
-                con=conn,
-                params={
-                    "table_name": table.name,
+            return conn.execute(
+                statement=sql,
+                parameters={
                     "percentage": percentage,
                 },
-            )
+            ).mappings()
 
     @property
     def url(self) -> URL:

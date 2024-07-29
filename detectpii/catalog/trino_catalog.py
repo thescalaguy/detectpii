@@ -3,7 +3,7 @@ from typing import Sequence
 
 import pandas as pd
 from attr import define
-from sqlalchemy import Engine, create_engine, text, Connection, Row
+from sqlalchemy import Engine, create_engine, text, Connection, Row, MappingResult
 from trino.sqlalchemy import URL
 
 from detectpii.model import Catalog, Column, Table
@@ -37,20 +37,22 @@ class TrinoCatalog(Catalog):
                     conn=conn,
                 )
 
-    def sample(self, table: Table, percentage: int = 10, **kwargs) -> pd.DataFrame:
-        assert table in self.tables, "Provided table doees not belong to this catalog"
+    def sample(self, table: Table, percentage: int = 10, **kwargs) -> MappingResult:
+        assert table in self.tables, "Provided table does not belong to this catalog"
 
         fully_qualified_table_name = f"{self.catalog}.{self.schema}.{table.name}"
-        sql = f"""
+        sql = text(
+            f"""
             SELECT * 
             FROM {fully_qualified_table_name} 
             TABLESAMPLE BERNOULLI({percentage})
         """
+        )
 
-        trino_engine = self.engine
-
-        with trino_engine.connect() as conn:
-            return pd.read_sql(sql=sql, con=conn)
+        with self.engine.connect() as conn:
+            return conn.execute(
+                statement=sql,
+            ).mappings()
 
     @property
     def url(self) -> URL:
