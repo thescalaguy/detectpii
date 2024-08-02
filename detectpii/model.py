@@ -1,7 +1,6 @@
 import abc
 from typing import Sequence
 
-import pandas as pd
 from attr import define, Factory
 from sqlalchemy import Engine
 

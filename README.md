@@ -38,13 +38,13 @@ pii_columns = pipeline.scan()
 
 ```python
 import json
-from detectpii.pipeline import pipeline_to_json
+from detectpii.pipeline import pipeline_to_dict
 
 # -- Create a pipeline
 pipeline = ...
 
 # -- Convert it into a dictionary
-dictionary = pipeline_to_json(pipeline)
+dictionary = pipeline_to_dict(pipeline)
 
 # -- Print it
 print(json.dumps(dictionary, indent=4))
@@ -52,12 +52,13 @@ print(json.dumps(dictionary, indent=4))
 # {
 #     "catalog": {
 #         "tables": [],
-#         "user": "postgres",
-#         "password": "my-secret-pw",
+#         "user": "admin",
+#         "password": "",
 #         "host": "localhost",
-#         "port": 5432,
-#         "database": "postgres",
-#         "schema": "public"
+#         "port": 9080,
+#         "catalog": "hive",
+#         "schema": "views",
+#         "_type": "TrinoCatalog"
 #     },
 #     "scanners": [
 #         {
@@ -70,6 +71,18 @@ print(json.dumps(dictionary, indent=4))
 #         }
 #     ]
 # }
+```
+
+### Load the pipeline
+
+```python
+from detectpii.pipeline import dict_to_pipeline
+
+# -- Load the persisted pipeline as a dictionary
+dictionary: dict = ...
+
+# -- Convert it back to a pipeline object
+pipeline = dict_to_pipeline(dictionary=dictionary)
 ```
 
 ## Supported databases / warehouses  
