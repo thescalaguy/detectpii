@@ -17,7 +17,7 @@ link = re.compile(
     re.IGNORECASE,
 )
 email = re.compile(
-    "([a-z0-9!#$%&'*+\/=?^_`{|.}~-]+@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)",
+    "([a-z0-9!#$%&'*+\/=?^_`{|.}~-]+(@|at)(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(\.|dot))+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)",
     re.IGNORECASE,
 )
 ip = re.compile(
