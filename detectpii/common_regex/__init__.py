@@ -72,7 +72,10 @@ class Regex:
 
     def __call__(self, *args):
         def regex_method(text=None):
-            return [x.strip() for x in self.regex.findall(text or self.obj.text)]
+            return [
+                x.strip() if isinstance(x, str) else "".join(x)
+                for x in self.regex.findall(text or self.obj.text)
+            ]
 
         return regex_method
 

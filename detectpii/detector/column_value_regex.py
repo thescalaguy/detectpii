@@ -35,7 +35,7 @@ class ColumnValueRegexDetector(Detector):
         if not sample:
             return
 
-        regex = CommonRegex(sample)
+        regex = CommonRegex(str(sample))
 
         if regex.phones or regex.phones_with_exts:  # noqa
             return Phone()
