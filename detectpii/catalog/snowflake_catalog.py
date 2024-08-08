@@ -9,7 +9,7 @@ from detectpii.model import Catalog, Table, Column
 
 @define(kw_only=True)
 class SnowflakeCatalog(Catalog):
-    """A collection of tables in a Postgres database and schema."""
+    """A collection of tables in a Snowflake database and schema."""
 
     user: str
     password: str
