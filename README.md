@@ -73,15 +73,6 @@ print(json.dumps(dictionary, indent=4))
 # }
 ```
 
-## Extending the library
-
-![Components of the library](./img/detectpii.png)
-
-The library consists of three main components -- the `PiiDetectionPipeline`, the `Scanner`s, and `Catalog`s. Their relationship is shown in the diagram above. 
-A pipeline consists of a catalog, which describes the table and columns, and scanners, which scan the tables and columns. 
-The two scanners that the library ships with scan the column name and column values using regular expressions. These are built on top of piicatcher and CommonRegex. 
-To add more catalogs and scanners, simply inherit from the `Catalog` and `Scanner` class, and implement the appropriate methods.
-
 ### Load the pipeline
 
 ```python
@@ -93,6 +84,16 @@ dictionary: dict = ...
 # -- Convert it back to a pipeline object
 pipeline = dict_to_pipeline(dictionary=dictionary)
 ```
+
+
+## Extending the library
+
+![Components of the library](./img/detectpii.png)
+
+The library consists of three main components -- the `PiiDetectionPipeline`, the `Scanner`s, and `Catalog`s. Their relationship is shown in the diagram above. 
+A pipeline consists of a catalog, which describes the table and columns, and scanners, which scan the tables and columns. 
+The two scanners that the library ships with scan the column name and column values using regular expressions. These are built on top of piicatcher and CommonRegex. 
+To add more catalogs and scanners, simply inherit from the `Catalog` and `Scanner` class, and implement the appropriate methods.
 
 ## Supported databases / warehouses  
 
