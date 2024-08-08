@@ -85,6 +85,15 @@ dictionary: dict = ...
 pipeline = dict_to_pipeline(dictionary=dictionary)
 ```
 
+## Concepts 
+
+![Components of the library](./img/detectpii.png)
+
+The library consists of three main components -- the `PiiDetectionPipeline`, the `Scanner`s, and `Catalog`s. Their relationship is shown in the diagram above.
+A pipeline consists of a catalog and scanners which scan the tables and columns. 
+The two scanners that the library ships with scan the column name and column values. These are built on top of piicatcher and CommonRegex. 
+It is possible to add more scanners by extending the `Scanner` class.
+
 ## Supported databases / warehouses  
 
 * Postgres
