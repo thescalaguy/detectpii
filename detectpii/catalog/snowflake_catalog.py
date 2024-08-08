@@ -54,7 +54,20 @@ class SnowflakeCatalog(Catalog):
         percentage: int = 10,
         *args,
         **kwargs,
-    ) -> MappingResult: ...
+    ) -> MappingResult:
+        sql = text(f"""
+            SELECT *
+            FROM {table.name}
+            TABLESAMPLE BERNOULLI(:percentage)
+        """)
+
+        with self.engine.connect() as conn:
+            return conn.execute(
+                statement=sql,
+                parameters={
+                    "percentage": percentage,
+                },
+            ).mappings()
 
     @property
     def url(self) -> str:
