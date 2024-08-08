@@ -52,13 +52,17 @@ print(json.dumps(dictionary, indent=4))
 # {
 #     "catalog": {
 #         "tables": [],
-#         "user": "admin",
-#         "password": "",
+#         "resolver": {
+#             "name": "PlaintextResolver",
+#             "_type": "PlaintextResolver"
+#         },
+#         "user": "postgres",
+#         "password": "my-secret-pw",
 #         "host": "localhost",
-#         "port": 9080,
-#         "catalog": "hive",
-#         "schema": "views",
-#         "_type": "TrinoCatalog"
+#         "port": 5432,
+#         "database": "postgres",
+#         "schema": "public",
+#         "_type": "PostgresCatalog"
 #     },
 #     "scanners": [
 #         {

@@ -83,11 +83,11 @@ class PostgresCatalog(Catalog):
     @property
     def url(self) -> URL:
         return URL(
-            username=self.user,
-            password=self.password,
-            database=self.database,
-            port=self.port,
-            host=self.host,
+            username=self.resolver.resolve(self.user),
+            password=self.resolver.resolve(self.password),
+            database=self.resolver.resolve(self.database),
+            port=self.resolver.resolve(self.port),
+            host=self.resolver.resolve(self.host),
             query={},
             drivername="postgresql+psycopg2",
         )

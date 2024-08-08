@@ -5,6 +5,7 @@ from attr import define, Factory
 from sqlalchemy import Engine
 
 from detectpii.pii_type import PiiType
+from detectpii.resolver import ResolverT, PlaintextResolver
 
 
 @define(kw_only=True)
@@ -28,6 +29,7 @@ class Catalog:
     """A collection of tables."""
 
     tables: list[Table] = Factory(list)
+    resolver: ResolverT = PlaintextResolver()
 
     @abc.abstractmethod
     def engine(self) -> Engine:

@@ -56,12 +56,12 @@ class TrinoCatalog(Catalog):
     @property
     def url(self) -> URL:
         return URL(
-            host=self.host,
-            user=self.user,
-            port=self.port,
-            password=self.password,
-            catalog=self.catalog,
-            schema=self.schema,
+            host=self.resolver.resolve(self.host),
+            user=self.resolver.resolve(self.user),
+            port=self.resolver.resolve(self.port),
+            password=self.resolver.resolve(self.password),
+            catalog=self.resolver.resolve(self.catalog),
+            schema=self.resolver.resolve(self.schema),
         )
 
     def _table_names(self, conn: Connection) -> Sequence[Row]:
