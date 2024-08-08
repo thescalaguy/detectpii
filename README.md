@@ -101,6 +101,16 @@ A pipeline consists of a catalog, which describes the table and columns, and sca
 The two scanners that the library ships with scan the column name and column values using regular expressions. These are built on top of piicatcher and CommonRegex. 
 To add more catalogs and scanners, simply inherit from the `Catalog` and `Scanner` class, and implement the appropriate methods.
 
+<p align="center">
+    <img src="./img/resolver.png" />
+</p>
+
+Similarly, there are `Resolver`s which are used to fetch the credentials from an external store.   
+
+By default, every catalog uses the `PlaintextResolver` which requires that all credentials be passed in plaintext. This is only 
+meant for use within the development environment and poses a security risk when used in production. Other resolvers can be added 
+for secure stores like SSM, etc.
+
 ## Supported databases / warehouses  
 
 * Postgres
