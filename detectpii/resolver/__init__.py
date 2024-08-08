@@ -1,3 +1,3 @@
-from .plaintext import PlaintextResolver, DummyResolver
+from .plaintext import PlaintextResolver, NoneResolver
 
-ResolverT = PlaintextResolver | DummyResolver
+ResolverT = PlaintextResolver | NoneResolver

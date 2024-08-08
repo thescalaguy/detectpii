@@ -16,10 +16,10 @@ class PlaintextResolver(Resolver):
 
 
 @define(kw_only=True)
-class DummyResolver(Resolver):
-    """Resolves credentials provided in plaintext."""
+class NoneResolver(Resolver):
+    """Placeholder resolver for creating a tagged union."""
 
-    name: str = "PlaintextResolver"
+    name: str = "NoneResolver"
 
     def resolve(self, credential: Any) -> Any:
         return None
