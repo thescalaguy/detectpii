@@ -88,7 +88,9 @@ pipeline = dict_to_pipeline(dictionary=dictionary)
 
 ## Extending the library
 
-![Components of the library](./img/detectpii.png)
+<p align="center">
+    <img src="./img/detectpii.png" />
+</p>
 
 The library consists of three main components -- the `PiiDetectionPipeline`, the `Scanner`s, and `Catalog`s. Their relationship is shown in the diagram above. 
 A pipeline consists of a catalog, which describes the table and columns, and scanners, which scan the tables and columns. 
