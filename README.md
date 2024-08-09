@@ -5,6 +5,12 @@ on column names and column values, flagging the ones that may contain PII.
 
 ## Usage
 
+### Installation
+
+```shell
+pip install detectpii
+```
+
 ### Scan tables for PII
 
 ```python
