@@ -55,11 +55,13 @@ class SnowflakeCatalog(Catalog):
         *args,
         **kwargs,
     ) -> MappingResult:
-        sql = text(f"""
+        sql = text(
+            f"""
             SELECT *
             FROM {table.name}
             TABLESAMPLE BERNOULLI(:percentage)
-        """)
+        """
+        )
 
         with self.engine.connect() as conn:
             return conn.execute(
