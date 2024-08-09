@@ -1,3 +1,4 @@
-from .plaintext import PlaintextResolver, NoneResolver
+from .plaintext import PlaintextResolver
+from .environment import EnvironmentResolver
 
-ResolverT = PlaintextResolver | NoneResolver
+ResolverT = PlaintextResolver | EnvironmentResolver
