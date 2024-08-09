@@ -11,6 +11,7 @@ on column names and column values, flagging the ones that may contain PII.
 from detectpii.catalog import PostgresCatalog
 from detectpii.pipeline import PiiDetectionPipeline
 from detectpii.scanner import DataScanner, MetadataScanner
+from detectpii.util import print_columns
 
 # -- Create a catalog to connect to a database / warehouse
 pg_catalog = PostgresCatalog(
@@ -33,6 +34,9 @@ pipeline = PiiDetectionPipeline(
 
 # -- Scan for PII columns.
 pii_columns = pipeline.scan()
+
+# -- Print them to the console
+print_columns(pii_columns)
 ```
 
 ### Persist the pipeline
