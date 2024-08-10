@@ -60,12 +60,27 @@ catalog = PostgresCatalog(
 )
 ```
 
-In the example above, the credentials passed are named of environment variables from which they will be fetched. By default, the catalog 
+In the example above, the credentials passed are names of environment variables from which they will be fetched. By default, the catalog 
 uses the `PlaintextResolver` which requires that the credentials be passed in plaintext.
 
 # Catalogs  
 
 The following sections show how to instantiate different catalogs.
+
+## Hive Catalog
+
+```python
+from detectpii.catalog import HiveCatalog
+
+catalog = HiveCatalog(
+    user="scott",
+    password="tiger",
+    host="localhost",
+    port=10000,
+    database="default",
+    schema="default",
+)
+```
 
 ## Postgres
 

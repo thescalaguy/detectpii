@@ -104,6 +104,7 @@ For more detailed documentation, please see the `docs` folder.
 
 ## Supported databases / warehouses  
 
+* Hive
 * Postgres
 * Snowflake
 * Trino
