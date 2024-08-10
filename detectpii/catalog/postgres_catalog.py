@@ -13,7 +13,7 @@ class PostgresCatalog(Catalog):
     user: str
     password: str
     host: str
-    port: int
+    port: int | str
     database: str
     schema: str
 
@@ -85,7 +85,7 @@ class PostgresCatalog(Catalog):
             username=self.resolver.resolve(self.user),
             password=self.resolver.resolve(self.password),
             database=self.resolver.resolve(self.database),
-            port=self.resolver.resolve(self.port),
+            port=int(self.resolver.resolve(self.port)),
             host=self.resolver.resolve(self.host),
             query={},
             drivername="postgresql+psycopg2",

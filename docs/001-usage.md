@@ -42,6 +42,24 @@ dictionary: dict = ...
 pipeline: PiiDetectionPipeline = dict_to_pipeline(dictionary)
 ```
 
+`Catalog`s also accept an instance of a `Resolver` which is used to resolve credentials for connecting to the database or warehouse. The 
+following example shows how to use a resolver to fetch credentials from environment variables.
+
+```python
+from detectpii.catalog import PostgresCatalog
+from detectpii.resolver import EnvironmentResolver
+
+catalog = PostgresCatalog(
+    user="USER",
+    password="PASSWORD",
+    schema="SCHEMA",
+    host="HOST",
+    port="PORT",
+    database="DATABASE",
+    resolver=EnvironmentResolver()
+)
+```
+
 # Catalogs  
 
 The following sections show how to instantiate different catalogs.
