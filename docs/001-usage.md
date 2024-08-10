@@ -60,6 +60,9 @@ catalog = PostgresCatalog(
 )
 ```
 
+In the example above, the credentials passed are named of environment variables from which they will be fetched. By default, the catalog 
+uses the `PlaintextResolver` which requires that the credentials be passed in plaintext.
+
 # Catalogs  
 
 The following sections show how to instantiate different catalogs.
@@ -139,4 +142,42 @@ scanner = MetadataScanner()
 ```python
 from detectpii.scanner import DataScanner
 scanner = DataScanner(times=1, percentage=10)
+```
+
+# Resolvers  
+
+The following sections show how to use different resolvers.
+
+## PlaintextResolver
+
+```python
+from detectpii.catalog import PostgresCatalog
+from detectpii.resolver import EnvironmentResolver
+
+catalog = PostgresCatalog(
+    user="postgres",
+    password="my-secret-pw",
+    schema="public",
+    host="localhost",
+    port=5432,
+    database="postgres",
+    resolver=EnvironmentResolver()
+)
+```
+
+## EnvironmentResolver
+
+```python
+from detectpii.catalog import PostgresCatalog
+from detectpii.resolver import EnvironmentResolver
+
+catalog = PostgresCatalog(
+    user="USER",
+    password="PASSWORD",
+    schema="SCHEMA",
+    host="HOST",
+    port="PORT",
+    database="DATABASE",
+    resolver=EnvironmentResolver()
+)
 ```
