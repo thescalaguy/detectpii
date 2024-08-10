@@ -3,7 +3,6 @@ from functools import cached_property
 
 from attr import define
 from sqlalchemy import Engine, create_engine, text, URL, MappingResult
-
 from detectpii.model import Catalog, Column, Table
 
 
