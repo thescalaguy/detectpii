@@ -20,7 +20,27 @@ pii_columns: list[PiiColumn] = pipeline.scan()
 ```  
 
 Each database or warehouse has its own catalog and requires different options to instantiate it. Similarly, each scanner 
-has its own set of options.
+has its own set of options. Please see the following sections for more information.
+
+Pipelines can also be converted to, and from dictionary. The following example shows how to convert a pipeline to dictionary.
+
+```python
+from detectpii.pipeline import PiiDetectionPipeline
+from detectpii.pipeline import pipeline_to_dict
+
+pipeline: PiiDetectionPipeline = ...
+dictionary = pipeline_to_dict(pipeline)
+```
+
+Similarly, to load the pipeline from a dictionary, execute the following.
+
+```python
+from detectpii.pipeline import PiiDetectionPipeline
+from detectpii.pipeline import dict_to_pipeline
+
+dictionary: dict = ...
+pipeline: PiiDetectionPipeline = dict_to_pipeline(dictionary)
+```
 
 # Catalogs  
 
