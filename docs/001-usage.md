@@ -152,7 +152,7 @@ The following sections show how to use different resolvers.
 
 ```python
 from detectpii.catalog import PostgresCatalog
-from detectpii.resolver import EnvironmentResolver
+from detectpii.resolver import PlaintextResolver
 
 catalog = PostgresCatalog(
     user="postgres",
@@ -161,7 +161,7 @@ catalog = PostgresCatalog(
     host="localhost",
     port=5432,
     database="postgres",
-    resolver=EnvironmentResolver()
+    resolver=PlaintextResolver()
 )
 ```
 
