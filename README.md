@@ -7,7 +7,7 @@ on column names and column values, flagging the ones that may contain PII.
 
 ### Installation
 
-Packages can be installed by specifying [extras](https://setuptools.readthedocs.io/en/latest/setuptools.html#declaring-extras-optional-features-with-their-own-dependencies), e.g.:
+Packages can be installed by specifying [extras](https://setuptools.pypa.io/en/latest/userguide/dependency_management.html#optional-dependencies), e.g.:
 
 ```shell
 pip install detectpii[postgres]
