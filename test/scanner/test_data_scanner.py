@@ -16,8 +16,6 @@ def test_metadata_scanner():
     column_names = set(pii_column.column for pii_column in pii_columns)
     column_types = set(pii_column.pii_type for pii_column in pii_columns)
 
-    print(pii_columns)
-
     assert column_names == {
         "address",
     }
