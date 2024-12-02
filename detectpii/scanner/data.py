@@ -1,6 +1,7 @@
 from attr import define
 
 from detectpii.detector import ColumnValueRegexDetector
+from detectpii.detector.column_name_regex import Detector
 from detectpii.model import Catalog, PiiColumn, Scanner, Column
 
 
@@ -10,11 +11,10 @@ class DataScanner(Scanner):
 
     times: int = 1
     percentage: int = 10
+    column_value_regex_detector: Detector = ColumnValueRegexDetector()
 
     def scan(self, catalog: Catalog, **kwargs) -> list[PiiColumn]:
         pii_columns = []
-
-        column_value_regex_detector = ColumnValueRegexDetector()
 
         # -- Repeat the process as many times as requested
         for _ in range(self.times):
@@ -32,7 +32,7 @@ class DataScanner(Scanner):
                     for column_name, value in row.items():
                         column = Column(name=column_name)
 
-                        pii_type = column_value_regex_detector.detect(
+                        pii_type = self.column_value_regex_detector.detect(
                             column=column,
                             sample=str(value),
                         )
