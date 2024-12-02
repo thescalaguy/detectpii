@@ -7,9 +7,13 @@ on column names and column values, flagging the ones that may contain PII.
 
 ### Installation
 
+Packages can be installed by specifying [extras](https://setuptools.readthedocs.io/en/latest/setuptools.html#declaring-extras-optional-features-with-their-own-dependencies), e.g.:
+
 ```shell
-pip install detectpii
+pip install detectpii[postgres]
 ```
+
+See all supported [databases and data warehouses](#supported-databases--warehouses).
 
 ### Scan tables for PII
 
@@ -102,10 +106,10 @@ pipeline = dict_to_pipeline(dictionary=dictionary)
 
 For more detailed documentation, please see the `docs` folder.
 
-## Supported databases / warehouses  
+## Supported databases / warehouses
 
-* Hive
-* Postgres
-* Snowflake
-* Trino
-* Yugabyte
+* Hive in `detectpii[hive]`
+* Postgres in `detectpii[postgres]`
+* Snowflake in `detectpii[snowflake]`
+* Trino in `detectpii[trino]`
+* Yugabyte in `detectpii[yugabyte]`
