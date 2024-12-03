@@ -11,6 +11,7 @@ class PiiDetectionPipeline:
     catalog: CatalogT
     scanners: list[ScannerT] = Factory(list)
     ignore_column_regex: str | None = None
+    times: int = 1
     percentage: int = 10
 
     def scan(self) -> list[PiiColumn]:
@@ -47,21 +48,31 @@ class PiiDetectionPipeline:
         if not self.data_scanners:
             return pii_columns
 
-        for table in self.catalog.tables:
-            for row in self.catalog.sample(
-                table=table,
-                percentage=self.percentage,
-            ):
-                for column, value in row.items():
-                    for scanner in self.data_scanners:
-                        pii_type = scanner.scan(
-                            table=table,
-                            column=Column(name=column),
-                            value=str(value),
-                        )
+        # -- Scan the tables as many times as requested
+        for _ in range(self.times):
 
-                        if pii_type:
-                            pii_columns.extend(pii_type)
+            # -- For every table
+            for table in self.catalog.tables:
+
+                # -- Fetch a sample
+                for row in self.catalog.sample(
+                    table=table,
+                    percentage=self.percentage,
+                ):
+
+                    # -- Scan every column in every row
+                    for column, value in row.items():
+
+                        # -- Use the scanner to check if it is PII
+                        for scanner in self.data_scanners:
+                            pii_type = scanner.scan(
+                                table=table,
+                                column=Column(name=column),
+                                value=str(value),
+                            )
+
+                            if pii_type:
+                                pii_columns.extend(pii_type)
 
         return pii_columns
 

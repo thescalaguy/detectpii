@@ -9,8 +9,6 @@ from detectpii.model import PiiColumn, Scanner, Column, Table
 class DataScanner(Scanner):
     """Scan the table values for PII columns."""
 
-    times: int = 1
-    percentage: int = 10
     column_value_regex_detector: Detector = ColumnValueRegexDetector()
 
     def scan(
