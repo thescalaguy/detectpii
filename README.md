@@ -38,8 +38,10 @@ pipeline = PiiDetectionPipeline(
     catalog=pg_catalog,
     scanners=[
         MetadataScanner(),
-        DataScanner(percentage=20, times=2,),
-    ]
+        DataScanner(),
+    ],
+    times=1,
+    percentage=20,
 )
 
 # -- Scan for PII columns.
@@ -84,11 +86,11 @@ print(json.dumps(dictionary, indent=4))
 #             "_type": "MetadataScanner"
 #         },
 #         {
-#             "times": 2,
-#             "percentage": 20,
 #             "_type": "DataScanner"
 #         }
 #     ]
+#    "times": 1,
+#    "percentage": 10
 # }
 ```
 
