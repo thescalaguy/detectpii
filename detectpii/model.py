@@ -49,7 +49,7 @@ class Scanner:
     """A PII scanner."""
 
     @abc.abstractmethod
-    def scan(self, catalog: Catalog, **kwargs):
+    def scan(self, *args, **kwargs):
         raise NotImplementedError()
 
 
