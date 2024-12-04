@@ -5,11 +5,11 @@ from attr import define
 from sqlalchemy import Engine, create_engine, text, Connection, Row, MappingResult
 from trino.sqlalchemy import URL
 
-from detectpii.model import Catalog, Column, Table
+from detectpii.model import Column, Table, SQLAlchemyCatalog
 
 
 @define(kw_only=True)
-class TrinoCatalog(Catalog):
+class TrinoCatalog(SQLAlchemyCatalog):
     """A collection of tables in a Trino catalog and schema."""
 
     user: str

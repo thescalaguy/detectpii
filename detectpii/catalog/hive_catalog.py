@@ -3,11 +3,11 @@ from typing import Sequence
 from attrs import define
 from sqlalchemy import Engine, create_engine, text, Connection, MappingResult
 
-from detectpii.model import Catalog, Table, Column
+from detectpii.model import Catalog, Table, Column, SQLAlchemyCatalog
 
 
 @define(kw_only=True)
-class HiveCatalog(Catalog):
+class HiveCatalog(SQLAlchemyCatalog):
     user: str
     password: str
     database: str
