@@ -22,7 +22,7 @@ from detectpii.pii_type import (
 class ColumnValueRegexDetector(Detector):
     """Detect PII columns by matching them against known patterns.
 
-    This class has been borrowed from piicatcher and modified for use with this library.
+    This class has been borrowed from CommonRegex and modified for use with this library.
     """
 
     def detect(
