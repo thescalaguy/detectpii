@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "detectpii"
-version = "0.1.6"
+version = "0.1.7"
 repository = "https://github.com/thescalaguy/detectpii"
 description = "Detect PII columns in your database and warehouse"
 authors = ["Fasih Khatib <hellofasih.confound928@passinbox.com>"]

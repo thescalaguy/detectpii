@@ -1,7 +1,10 @@
+### v0.1.7  
+
+* Add `BigQueryCatalog`.
+
 ### v0.1.6  
 
-* Refactor the `Catalog` class.  
-* Add `BigQueryCatalog`.
+* Refactor the `Catalog` class.
 
 ### v0.1.5  
 
