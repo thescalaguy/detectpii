@@ -1,4 +1,5 @@
 import abc
+from collections.abc import Iterator
 from typing import Sequence
 
 from attr import define, Factory
@@ -36,7 +37,7 @@ class Catalog:
         raise NotImplementedError()
 
     @abc.abstractmethod
-    def sample(self, table: Table, *args, **kwargs) -> Sequence[dict]:
+    def sample(self, table: Table, *args, **kwargs) -> Iterator[dict]:
         raise NotImplementedError()
 
 
