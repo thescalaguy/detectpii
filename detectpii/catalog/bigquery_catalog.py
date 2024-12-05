@@ -20,7 +20,9 @@ class BigQueryCatalog(Catalog):
 
         client.close()
 
-    def sample(self, table: Table, percentage: int = 10, *args, **kwargs) -> Iterator[dict]:
+    def sample(
+        self, table: Table, percentage: int = 10, *args, **kwargs
+    ) -> Iterator[dict]:
         client = bigquery.Client(project=self.project)  # noqa
         fully_qualified_name = f"{table.schema}.{table.name}"
 
@@ -30,20 +32,16 @@ class BigQueryCatalog(Catalog):
             TABLESAMPLE SYSTEM ({percentage} PERCENT)
         """
 
-        iterator = (
+        return (
             {column: value for column, value in row.items()}
             for row in client.query(query)
         )
-
-        client.close()
-
-        return iterator
 
     def _add_table_to_catalog(self, table: bigquery.Table) -> None:
         t = Table(
             name=f"{table.table_id}",
             schema=f"{table.project}.{table.dataset_id}",
-            columns=[Column(name=field.name) for field in table.schema]
+            columns=[Column(name=field.name) for field in table.schema],
         )
 
         self.tables.append(t)
