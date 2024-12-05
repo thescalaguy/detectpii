@@ -14,8 +14,8 @@ class BigQueryCatalog(Catalog):
     def detect_tables(self) -> None:
         client = bigquery.Client(project=self.project)  # noqa
 
-        for tablelistitem in client.list_tables(dataset=self.dataset):
-            table = client.get_table(tablelistitem)
+        for table_list_item in client.list_tables(dataset=self.dataset):
+            table = client.get_table(table_list_item)
             self._add_table_to_catalog(table=table)
 
         client.close()
