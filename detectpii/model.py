@@ -1,4 +1,5 @@
 import abc
+from collections.abc import Iterator
 from typing import Sequence
 
 from attr import define, Factory
@@ -32,15 +33,19 @@ class Catalog:
     resolver: ResolverT = PlaintextResolver()
 
     @abc.abstractmethod
-    def engine(self) -> Engine:
-        raise NotImplementedError()
-
-    @abc.abstractmethod
     def detect_tables(self) -> None:
         raise NotImplementedError()
 
     @abc.abstractmethod
-    def sample(self, table: Table, *args, **kwargs) -> Sequence[dict]:
+    def sample(self, table: Table, *args, **kwargs) -> Iterator[dict]:
+        raise NotImplementedError()
+
+
+class SQLAlchemyCatalog(Catalog):
+    """Base class for catalogs that depend on SQLAlchemy."""
+
+    @abc.abstractmethod
+    def engine(self) -> Engine:
         raise NotImplementedError()
 
 

@@ -110,8 +110,11 @@ For more detailed documentation, please see the `docs` folder.
 
 ## Supported databases / warehouses
 
-* Hive in `detectpii[hive]`
-* Postgres in `detectpii[postgres]`
-* Snowflake in `detectpii[snowflake]`
-* Trino in `detectpii[trino]`
-* Yugabyte in `detectpii[yugabyte]`
+| Database / Warehouse | Package              |
+|----------------------|----------------------|
+| Hive                 | detectpii[hive]      |
+| Postgres             | detectpii[postgres]  |
+| Snowflake            | detectpii[snowflake] |
+| Trino                | detectpii[trino]     |
+| Yugabyte             | detectpii[yugabyte]  |
+| BigQuery             | detectpii[bigquery]  |
