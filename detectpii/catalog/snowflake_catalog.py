@@ -4,11 +4,11 @@ from functools import cached_property
 from attr import define
 from sqlalchemy import Engine, create_engine, text, MappingResult
 
-from detectpii.model import Catalog, Table, Column
+from detectpii.model import SQLAlchemyCatalog, Table, Column
 
 
 @define(kw_only=True)
-class SnowflakeCatalog(Catalog):
+class SnowflakeCatalog(SQLAlchemyCatalog):
     """A collection of tables in a Snowflake database and schema."""
 
     user: str

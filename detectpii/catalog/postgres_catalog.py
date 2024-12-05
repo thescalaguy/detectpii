@@ -3,11 +3,12 @@ from functools import cached_property
 
 from attr import define
 from sqlalchemy import Engine, create_engine, text, URL, MappingResult
-from detectpii.model import Catalog, Column, Table
+
+from detectpii.model import Column, Table, SQLAlchemyCatalog
 
 
 @define(kw_only=True)
-class PostgresCatalog(Catalog):
+class PostgresCatalog(SQLAlchemyCatalog):
     """A collection of tables in a Postgres database and schema."""
 
     user: str
