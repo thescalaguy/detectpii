@@ -38,7 +38,7 @@ class SpanishColumnNameRegexDetector(Detector):
         ),
         Email: re.compile(
             "^.*(email|e-mail|mail|correo_electronico|"
-            "correoelectronico|correo|direccion_de_correo|"
+            "correoelectronico|direccion_de_correo|"
             "email_address|correo_de_contacto|contact_email|"
             "contacto_email).*$",
             re.IGNORECASE,
@@ -87,8 +87,7 @@ class SpanishColumnNameRegexDetector(Detector):
             re.IGNORECASE,
         ),
         SSN: re.compile(
-            "^.*(ssn|social_number|social_security|"
-            "social_security_number|social_security_no).*$",
+            "^.*(ssn|nro_documento|nro_doc|dni).*$",
             re.IGNORECASE,
         ),
         PoBox: re.compile(
@@ -98,7 +97,7 @@ class SpanishColumnNameRegexDetector(Detector):
             re.IGNORECASE,
         ),
         CreditCard: re.compile(
-            "^.*(tarjeta_credito|numero_tarjeta|num_tarjeta|"
+            "^.*(tarjeta_credito|numero_tarjeta|num_tarjeta|nro_tarjeta|"
             "num_tarjeta_credito|tarjeta_cc|credit_card_no|creditcard_no|"
             "tarjeta_bancaria).*$",
             re.IGNORECASE,
