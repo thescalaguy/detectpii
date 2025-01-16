@@ -1,3 +1,7 @@
+### v0.1.8  
+
+* Add `SpanishColumnNameRegexDetector` and renamed `ColumnNameRegexDetector` to `EnglishColumnNameRegexDetector`.
+
 ### v0.1.7  
 
 * Add `BigQueryCatalog`.
