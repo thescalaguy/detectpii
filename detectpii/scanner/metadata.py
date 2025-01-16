@@ -1,15 +1,14 @@
 from attr import define
 
-from detectpii.detector import ColumnNameRegexDetector
-from detectpii.detector.column_name_regex import Detector
-from detectpii.model import PiiColumn, Scanner, Catalog, Column, Table
+from detectpii.detector import Detector, EnglishColumnNameRegexDetector
+from detectpii.model import PiiColumn, Scanner, Column, Table
 
 
 @define(kw_only=True)
 class MetadataScanner(Scanner):
     """Scan the table schema for PII columns."""
 
-    column_name_regex_detector: Detector = ColumnNameRegexDetector()
+    column_name_regex_detector: Detector = EnglishColumnNameRegexDetector()
 
     def scan(
         self,

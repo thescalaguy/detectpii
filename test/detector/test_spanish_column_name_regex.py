@@ -1,6 +1,20 @@
 from detectpii.detector.spanish_column_name_regex import SpanishColumnNameRegexDetector
 from detectpii.model import Column
-from detectpii.pii_type import *
+from detectpii.pii_type import (
+    Email,
+    BirthDate,
+    Gender,
+    Nationality,
+    ZipCode,
+    UserName,
+    SSN,
+    PoBox,
+    CreditCard,
+    Phone,
+    Person,
+    Address,
+    Password,
+)
 
 
 def test_detect_person_pii_given_name_like_column_name():
