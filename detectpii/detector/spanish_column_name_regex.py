@@ -3,8 +3,7 @@ from typing import Optional
 
 from attr import define
 
-from detectpii.detector.column_name_regex import Detector
-from detectpii.model import Column
+from detectpii.detector.column_name_regex import BaseColumnNameRegexDetector
 from detectpii.pii_type import (
     Email,
     BirthDate,
@@ -23,7 +22,7 @@ from detectpii.pii_type import (
 )
 
 @define(kw_only=True)
-class SpanishColumnNameRegexDetector(Detector):
+class SpanishColumnNameRegexDetector(BaseColumnNameRegexDetector):
     """Detect PII columns by matching them against known patterns.
 
     This class has been borrowed from piicatcher and modified for use with this library.
@@ -111,15 +110,3 @@ class SpanishColumnNameRegexDetector(Detector):
     }
 
     name: str = "SpanishColumnNameRegexDetector"
-
-    def detect(
-        self,
-        column: Column,
-        *args,
-        **kwargs,
-    ) -> Optional[PiiType]:
-        for pii_type, ex in self.regex.items():
-            if ex.match(column.name) is not None:
-                return pii_type()
-
-        return None
