@@ -3,7 +3,7 @@ from typing import Optional
 
 from attr import define
 
-from detectpii.detector.column_name_regex import BaseColumnNameRegexDetector
+from detectpii.detector import BaseColumnNameRegexDetector
 from detectpii.pii_type import (
     Email,
     BirthDate,

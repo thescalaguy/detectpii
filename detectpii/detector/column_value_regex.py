@@ -3,7 +3,7 @@ from typing import Optional
 from attr import define
 
 from detectpii.common_regex import CommonRegex
-from detectpii.detector.column_name_regex import Detector
+from detectpii.detector import Detector
 from detectpii.model import Column
 from detectpii.pii_type import (
     PiiType,
