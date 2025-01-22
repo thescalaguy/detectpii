@@ -1,7 +1,7 @@
 from attr import define
 
 from detectpii.detector import ColumnValueRegexDetector
-from detectpii.detector.column_name_regex import Detector
+from detectpii.detector import Detector
 from detectpii.model import PiiColumn, Scanner, Column, Table
 
 
