@@ -33,7 +33,7 @@ pg_catalog = PostgresCatalog(
     schema="public"
 )
 
-# -- Create a pipeline to detect PII in the tables
+# -- Create a pipeline to detect PII in tables using an English dictionary
 pipeline = PiiDetectionPipeline(
     catalog=pg_catalog,
     scanners=[
@@ -118,3 +118,12 @@ For more detailed documentation, please see the `docs` folder.
 | Trino                | detectpii[trino]     |
 | Yugabyte             | detectpii[yugabyte]  |
 | BigQuery             | detectpii[bigquery]  |
+
+## Available languages
+
+The following languages are available for metadata detection:
+
+| Language | Detector                         |
+|----------|----------------------------------|
+| English  | `EnglishColumnNameRegexDetector` |
+| Spanish  | `SpanishColumnNameRegexDetector` |

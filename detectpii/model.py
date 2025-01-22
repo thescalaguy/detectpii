@@ -1,6 +1,5 @@
 import abc
 from collections.abc import Iterator
-from typing import Sequence
 
 from attr import define, Factory
 from sqlalchemy import Engine

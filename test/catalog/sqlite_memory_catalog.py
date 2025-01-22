@@ -2,10 +2,10 @@ from typing import Sequence
 
 from sqlalchemy import Engine, create_engine
 
-from detectpii.model import Catalog, Table, Column, SQLAlchemyCatalog
+from detectpii.model import Table, Column, SQLAlchemyCatalog
 
 
-class TestCatalog(SQLAlchemyCatalog):
+class SQLiteMemoryCatalog(SQLAlchemyCatalog):
     """A catalog to be used only for testing."""
 
     def engine(self) -> Engine:

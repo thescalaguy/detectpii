@@ -1,12 +1,12 @@
-from detectpii.catalog import TestCatalog
-from detectpii.pii_type import Person, Address
+from detectpii.pii_type import Address
 from detectpii.pipeline import PiiDetectionPipeline
 from detectpii.scanner import DataScanner
+from test.catalog.sqlite_memory_catalog import SQLiteMemoryCatalog
 
 
 def test_metadata_scanner():
     pipeline = PiiDetectionPipeline(
-        catalog=TestCatalog(),
+        catalog=SQLiteMemoryCatalog(),
         scanners=[
             DataScanner(),
         ],
