@@ -1,8 +1,8 @@
 from typing import Optional
 
-from attr import define
+from attr import define, field
 
-from detectpii.common_regex import CommonRegex
+from detectpii.common_regex import CommonRegex, ENGLISH_COMMON_REGEXES
 from detectpii.detector import Detector
 from detectpii.model import Column
 from detectpii.pii_type import (
@@ -18,6 +18,10 @@ from detectpii.pii_type import (
 )
 
 
+
+import re
+
+
 @define(kw_only=True)
 class ColumnValueRegexDetector(Detector):
     """Detect PII columns by matching them against known patterns.
@@ -25,6 +29,8 @@ class ColumnValueRegexDetector(Detector):
     This class has been borrowed from CommonRegex and modified for use with this library.
     """
 
+    regex_patterns: dict[str, re.Pattern] = ENGLISH_COMMON_REGEXES
+    
     def detect(
         self,
         column: Column,
@@ -35,7 +41,7 @@ class ColumnValueRegexDetector(Detector):
         if not sample:
             return
 
-        regex = CommonRegex(str(sample))
+        regex = CommonRegex(self.regex_patterns, str(sample))
 
         if regex.phones or regex.phones_with_exts:  # noqa
             return Phone()

@@ -21,6 +21,7 @@ from detectpii.pii_type import (
     Password,
 )
 
+
 @define(kw_only=True)
 class SpanishColumnNameRegexDetector(BaseColumnNameRegexDetector):
     """Detect PII columns by matching them against known patterns.
