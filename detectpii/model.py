@@ -1,11 +1,13 @@
 import abc
 from collections.abc import Iterator
 
-from attr import define, Factory
+from attr import define
+from attr import Factory
 from sqlalchemy import Engine
 
 from detectpii.pii_type import PiiType
-from detectpii.resolver import ResolverT, PlaintextResolver
+from detectpii.resolver import PlaintextResolver
+from detectpii.resolver import ResolverT
 
 
 @define(kw_only=True)

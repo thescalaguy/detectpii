@@ -1,25 +1,22 @@
 import re
-from typing import Optional
 
 from attr import define
 
 from detectpii.detector import BaseColumnNameRegexDetector
-from detectpii.pii_type import (
-    Email,
-    BirthDate,
-    Gender,
-    Nationality,
-    ZipCode,
-    UserName,
-    SSN,
-    PoBox,
-    CreditCard,
-    Phone,
-    PiiType,
-    Person,
-    Address,
-    Password,
-)
+from detectpii.pii_type import Address
+from detectpii.pii_type import BirthDate
+from detectpii.pii_type import CreditCard
+from detectpii.pii_type import Email
+from detectpii.pii_type import Gender
+from detectpii.pii_type import Nationality
+from detectpii.pii_type import Password
+from detectpii.pii_type import Person
+from detectpii.pii_type import Phone
+from detectpii.pii_type import PoBox
+from detectpii.pii_type import SSN
+from detectpii.pii_type import UserName
+from detectpii.pii_type import ZipCode
+
 
 @define(kw_only=True)
 class SpanishColumnNameRegexDetector(BaseColumnNameRegexDetector):

@@ -1,20 +1,20 @@
-### v0.1.8  
+### v0.1.8
 
 * Add `SpanishColumnNameRegexDetector`.
 * Rename `ColumnNameRegexDetector` to `EnglishColumnNameRegexDetector`.
 
-### v0.1.7  
+### v0.1.7
 
 * Add `BigQueryCatalog`.
 
-### v0.1.6  
+### v0.1.6
 
 * Refactor the `Catalog` class.
 
-### v0.1.5  
+### v0.1.5
 
 * Improve efficiency of `PiiDetectionPipeline` by reusing the samples fetched from the tables.
 
-### v0.1.4  
+### v0.1.4
 
 * Make database dependencies optional. This requires installing each database dependency as an extra. For example, `pip install detectpii[postgres]`

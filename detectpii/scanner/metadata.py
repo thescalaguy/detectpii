@@ -1,7 +1,11 @@
 from attr import define
 
-from detectpii.detector import Detector, EnglishColumnNameRegexDetector
-from detectpii.model import PiiColumn, Scanner, Column, Table
+from detectpii.detector import Detector
+from detectpii.detector import EnglishColumnNameRegexDetector
+from detectpii.model import Column
+from detectpii.model import PiiColumn
+from detectpii.model import Scanner
+from detectpii.model import Table
 
 
 @define(kw_only=True)

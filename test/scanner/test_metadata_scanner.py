@@ -1,4 +1,5 @@
-from detectpii.pii_type import Person, Address
+from detectpii.pii_type import Address
+from detectpii.pii_type import Person
 from detectpii.pipeline import PiiDetectionPipeline
 from detectpii.scanner import MetadataScanner
 from test.catalog.sqlite_memory_catalog import SQLiteMemoryCatalog

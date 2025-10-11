@@ -65,7 +65,6 @@ regexes = {
 
 
 class Regex:
-
     def __init__(self, obj, regex):
         self.obj = obj
         self.regex = regex
@@ -81,7 +80,6 @@ class Regex:
 
 
 class CommonRegex(object):
-
     def __init__(self, text=""):
         self.text = text
 

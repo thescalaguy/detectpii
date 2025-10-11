@@ -1,11 +1,11 @@
-from sqlalchemy import MappingResult, text
+from sqlalchemy import MappingResult
+from sqlalchemy import text
 
 from detectpii.catalog import PostgresCatalog
 from detectpii.model import Table
 
 
 class YugabyteCatalog(PostgresCatalog):
-
     def sample(
         self,
         table: Table,

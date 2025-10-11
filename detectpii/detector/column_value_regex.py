@@ -5,17 +5,15 @@ from attr import define
 from detectpii.common_regex import CommonRegex
 from detectpii.detector import Detector
 from detectpii.model import Column
-from detectpii.pii_type import (
-    PiiType,
-    Phone,
-    Email,
-    IPAddress,
-    CreditCard,
-    Address,
-    ZipCode,
-    PoBox,
-    SSN,
-)
+from detectpii.pii_type import Address
+from detectpii.pii_type import CreditCard
+from detectpii.pii_type import Email
+from detectpii.pii_type import IPAddress
+from detectpii.pii_type import Phone
+from detectpii.pii_type import PiiType
+from detectpii.pii_type import PoBox
+from detectpii.pii_type import SSN
+from detectpii.pii_type import ZipCode
 
 
 @define(kw_only=True)

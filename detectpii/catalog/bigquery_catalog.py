@@ -3,7 +3,9 @@ from collections.abc import Iterator
 from attrs import define
 from google.cloud import bigquery
 
-from detectpii.model import Catalog, Table, Column
+from detectpii.model import Catalog
+from detectpii.model import Column
+from detectpii.model import Table
 
 
 @define(kw_only=True)

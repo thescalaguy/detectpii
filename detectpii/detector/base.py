@@ -1,7 +1,8 @@
 import abc
 from typing import Optional
 
-from attr import define, field
+from attr import define
+from attr import field
 
 from detectpii.model import Column
 from detectpii.pii_type import PiiType
@@ -9,7 +10,6 @@ from detectpii.pii_type import PiiType
 
 @define(kw_only=True, frozen=True)
 class Detector:
-
     @abc.abstractmethod
     def detect(
         self,

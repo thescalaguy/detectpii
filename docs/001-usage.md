@@ -1,7 +1,7 @@
-Using the library to detect PII requires setting up a PII detection pipeline. The pipeline takes a catalog, and a list of scanners. 
-Once this is done, simply call the `scan` method of the pipeline to find columns that may contain PII. 
+Using the library to detect PII requires setting up a PII detection pipeline. The pipeline takes a catalog, and a list of scanners.
+Once this is done, simply call the `scan` method of the pipeline to find columns that may contain PII.
 
-The general recipe for setting up a pipeline is as follows.  
+The general recipe for setting up a pipeline is as follows.
 
 ```python
 from detectpii.model import Catalog, Scanner, PiiColumn
@@ -17,9 +17,9 @@ pipeline: PiiDetectionPipeline = PiiDetectionPipeline(
 )
 
 pii_columns: list[PiiColumn] = pipeline.scan()
-```  
+```
 
-Each database or warehouse has its own catalog and requires different options to instantiate it. Similarly, each scanner 
+Each database or warehouse has its own catalog and requires different options to instantiate it. Similarly, each scanner
 has its own set of options. Please see the following sections for more information.
 
 Pipelines can also be converted to, and from dictionary. The following example shows how to convert a pipeline to dictionary.
@@ -42,7 +42,7 @@ dictionary: dict = ...
 pipeline: PiiDetectionPipeline = dict_to_pipeline(dictionary)
 ```
 
-`Catalog`s also accept an instance of a `Resolver` which is used to resolve credentials for connecting to the database or warehouse. The 
+`Catalog`s also accept an instance of a `Resolver` which is used to resolve credentials for connecting to the database or warehouse. The
 following example shows how to use a resolver to fetch credentials from environment variables.
 
 ```python
@@ -60,10 +60,10 @@ catalog = PostgresCatalog(
 )
 ```
 
-In the example above, the credentials passed are names of environment variables from which they will be fetched. By default, the catalog 
+In the example above, the credentials passed are names of environment variables from which they will be fetched. By default, the catalog
 uses the `PlaintextResolver` which requires that the credentials be passed in plaintext.
 
-# Catalogs  
+# Catalogs
 
 The following sections show how to instantiate different catalogs.
 
@@ -97,7 +97,7 @@ catalog = PostgresCatalog(
 )
 ```
 
-## Snowflake 
+## Snowflake
 
 ```python
 from detectpii.catalog import SnowflakeCatalog
@@ -109,9 +109,9 @@ catalog = SnowflakeCatalog(
     schema="public",
     account_identifier="AE1V2M",
 )
-```  
+```
 
-## Trino  
+## Trino
 
 ```python
 from detectpii.catalog import TrinoCatalog
@@ -124,9 +124,9 @@ catalog = TrinoCatalog(
     catalog="hive",
     schema="views"
 )
-```  
+```
 
-## Yugabyte  
+## Yugabyte
 
 ```python
 from detectpii.catalog import YugabyteCatalog
@@ -141,11 +141,11 @@ catalog = YugabyteCatalog(
 )
 ```
 
-# Scanners  
+# Scanners
 
-The following sections show how to instantiate different scanners.  
+The following sections show how to instantiate different scanners.
 
-## Metadata Scanner  
+## Metadata Scanner
 
 ```python
 from detectpii.scanner import MetadataScanner
@@ -159,7 +159,7 @@ from detectpii.scanner import DataScanner
 scanner = DataScanner(times=1, percentage=10)
 ```
 
-# Resolvers  
+# Resolvers
 
 The following sections show how to use different resolvers.
 

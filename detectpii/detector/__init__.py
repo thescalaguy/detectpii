@@ -1,4 +1,5 @@
-from .base import Detector, BaseColumnNameRegexDetector
+from .base import BaseColumnNameRegexDetector
+from .base import Detector
+from .column_value_regex import ColumnValueRegexDetector
 from .english_column_name_regex import EnglishColumnNameRegexDetector
 from .spanish_column_name_regex import SpanishColumnNameRegexDetector
-from .column_value_regex import ColumnValueRegexDetector

@@ -1,9 +1,14 @@
 import re
 
-from attr import define, Factory
+from attr import define
+from attr import Factory
+
 from detectpii.catalog import CatalogT
-from detectpii.model import PiiColumn, Column
-from detectpii.scanner import ScannerT, MetadataScanner, DataScanner
+from detectpii.model import Column
+from detectpii.model import PiiColumn
+from detectpii.scanner import DataScanner
+from detectpii.scanner import MetadataScanner
+from detectpii.scanner import ScannerT
 
 
 @define(kw_only=True)
@@ -50,19 +55,15 @@ class PiiDetectionPipeline:
 
         # -- Scan the tables as many times as requested
         for _ in range(self.times):
-
             # -- For every table
             for table in self.catalog.tables:
-
                 # -- Fetch a sample
                 for row in self.catalog.sample(
                     table=table,
                     percentage=self.percentage,
                 ):
-
                     # -- Scan every column in every row
                     for column, value in row.items():
-
                         # -- Use the scanner to check if it is PII
                         for scanner in self.data_scanners:
                             pii_type = scanner.scan(

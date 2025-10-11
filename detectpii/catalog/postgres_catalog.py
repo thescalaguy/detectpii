@@ -2,9 +2,15 @@ import itertools
 from functools import cached_property
 
 from attr import define
-from sqlalchemy import Engine, create_engine, text, URL, MappingResult
+from sqlalchemy import create_engine
+from sqlalchemy import Engine
+from sqlalchemy import MappingResult
+from sqlalchemy import text
+from sqlalchemy import URL
 
-from detectpii.model import Column, Table, SQLAlchemyCatalog
+from detectpii.model import Column
+from detectpii.model import SQLAlchemyCatalog
+from detectpii.model import Table
 
 
 @define(kw_only=True)
@@ -24,14 +30,14 @@ class PostgresCatalog(SQLAlchemyCatalog):
 
     def detect_tables(self) -> None:
         query = text(
-            f"""
+            """
             SELECT
                 table_schema,
                 table_name,
                 column_name
             FROM
                 information_schema.columns
-            WHERE 1=1 
+            WHERE 1=1
                   AND table_schema = :schema
             ORDER BY table_name, column_name;
         """

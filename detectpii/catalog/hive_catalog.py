@@ -1,9 +1,13 @@
-from typing import Sequence
-
 from attrs import define
-from sqlalchemy import Engine, create_engine, text, Connection, MappingResult
+from sqlalchemy import Connection
+from sqlalchemy import create_engine
+from sqlalchemy import Engine
+from sqlalchemy import MappingResult
+from sqlalchemy import text
 
-from detectpii.model import Catalog, Table, Column, SQLAlchemyCatalog
+from detectpii.model import Column
+from detectpii.model import SQLAlchemyCatalog
+from detectpii.model import Table
 
 
 @define(kw_only=True)

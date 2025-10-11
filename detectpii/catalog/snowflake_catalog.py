@@ -2,9 +2,14 @@ import itertools
 from functools import cached_property
 
 from attr import define
-from sqlalchemy import Engine, create_engine, text, MappingResult
+from sqlalchemy import create_engine
+from sqlalchemy import Engine
+from sqlalchemy import MappingResult
+from sqlalchemy import text
 
-from detectpii.model import SQLAlchemyCatalog, Table, Column
+from detectpii.model import Column
+from detectpii.model import SQLAlchemyCatalog
+from detectpii.model import Table
 
 
 @define(kw_only=True)

@@ -1,8 +1,11 @@
 from typing import Sequence
 
-from sqlalchemy import Engine, create_engine
+from sqlalchemy import create_engine
+from sqlalchemy import Engine
 
-from detectpii.model import Table, Column, SQLAlchemyCatalog
+from detectpii.model import Column
+from detectpii.model import SQLAlchemyCatalog
+from detectpii.model import Table
 
 
 class SQLiteMemoryCatalog(SQLAlchemyCatalog):

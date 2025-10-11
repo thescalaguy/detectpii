@@ -2,10 +2,17 @@ from functools import cached_property
 from typing import Sequence
 
 from attr import define
-from sqlalchemy import Engine, create_engine, text, Connection, Row, MappingResult
+from sqlalchemy import Connection
+from sqlalchemy import create_engine
+from sqlalchemy import Engine
+from sqlalchemy import MappingResult
+from sqlalchemy import Row
+from sqlalchemy import text
 from trino.sqlalchemy import URL
 
-from detectpii.model import Column, Table, SQLAlchemyCatalog
+from detectpii.model import Column
+from detectpii.model import SQLAlchemyCatalog
+from detectpii.model import Table
 
 
 @define(kw_only=True)
@@ -27,7 +34,6 @@ class TrinoCatalog(SQLAlchemyCatalog):
         trino_engine = self.engine
 
         with trino_engine.connect() as conn:
-
             for row in self._table_names(conn=conn):
                 (table_name,) = row
 
@@ -42,8 +48,8 @@ class TrinoCatalog(SQLAlchemyCatalog):
         fully_qualified_table_name = f"{self.catalog}.{self.schema}.{table.name}"
         sql = text(
             f"""
-            SELECT * 
-            FROM {fully_qualified_table_name} 
+            SELECT *
+            FROM {fully_qualified_table_name}
             TABLESAMPLE BERNOULLI({percentage})
         """
         )
