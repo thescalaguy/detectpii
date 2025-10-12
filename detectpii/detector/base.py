@@ -9,7 +9,7 @@ from detectpii.pii_type import PiiType
 
 
 @define(kw_only=True, frozen=True)
-class Detector:
+class Detector(abc.ABC):
     @abc.abstractmethod
     def detect(
         self,

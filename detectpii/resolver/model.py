@@ -4,7 +4,7 @@ from attr import define
 
 
 @define(kw_only=True, frozen=True)
-class Resolver:
+class Resolver(abc.ABC):
     """Resolves credentials."""
 
     name: str

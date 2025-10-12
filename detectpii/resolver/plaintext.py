@@ -13,13 +13,3 @@ class PlaintextResolver(Resolver):
 
     def resolve(self, credential: Any) -> Any:
         return credential
-
-
-@define(kw_only=True)
-class NoneResolver(Resolver):
-    """Placeholder resolver for creating a tagged union."""
-
-    name: str = "NoneResolver"
-
-    def resolve(self, credential: Any) -> Any:
-        return None
